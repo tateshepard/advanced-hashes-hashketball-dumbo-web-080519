@@ -1,6 +1,10 @@
 require "pry"
 def game_hash
+<<<<<<< HEAD
    game_hash ={:home =>
+=======
+   {:home =>
+>>>>>>> a4904d0f790dc3c019b45600649aca7e2e218abd
     { :team_name => "Brooklyn Nets",
       :colors => ["Black", "White"],
       :players => [
@@ -38,7 +42,11 @@ def game_hash
          :number => 1,
          :shoe => 19,
          :points => 26,
+<<<<<<< HEAD
          :rebounds => 11,
+=======
+         :rebounds => 12,
+>>>>>>> a4904d0f790dc3c019b45600649aca7e2e218abd
          :assists => 6,
          :steals => 3,
          :blocks => 8,
@@ -116,6 +124,7 @@ def game_hash
  end
 
 def find_player(name)
+<<<<<<< HEAD
    players_array = game_hash[:home][:players] + game_hash[:away][:players]
   players_array.find{ |player| player[:player_name] == name }
 end
@@ -139,6 +148,77 @@ end
 def find_team_by_name(team_name)
   teams.find{ |t| t[:team_name] == team_name }
 end
+=======
+  game_hash.find{ |p| p[:player_name] == name }
+end
+binding.pry
+def num_points_scored(name)
+  find_player(name)[:points]
+end
+
+def shoe_size(name)
+  find_player(name)[:shoe]
+end
+
+def teams
+  game_hash.keys.reduce([]){ |memo, k|  memo << game_hash[k] }
+end
+
+def all_players
+  teams.reduce([]){ |memo, t|  memo << t[:players] }.flatten
+end
+
+def find_team_by_name(team_name)
+  teams.find{ |t| t[:team_name] == team_name }
+end
+
+def team_colors(team_name)
+  find_team_by_name(team_name)[:colors]
+end
+
+def team_names
+  teams.map{ |t| t[:team_name] }
+end
+
+def player_numbers(tn)
+  find_team_by_name(tn)[:players].reduce([]) do |memo, pl|
+    memo << pl[:number]
+    memo
+  end
+end
+
+def player_stats(name)
+  temp = find_player(name).dup
+  temp.delete(:player_name)
+  temp
+end
+
+def big_shoe_rebounds
+  all_players.max_by{ |p| p[:shoe] }[:rebounds]
+end
+
+def most_points_scored
+  all_players.max_by{ |pl| pl[:points] }[:player_name]
+end
+
+def total_points(team)
+  team[:players].reduce(0){ |memo, pl| memo + pl[:points] }
+end
+
+def winning_team
+  teams.max_by{ |t| total_points(t) }[:team_name]
+end
+
+def player_with_longest_name
+  all_players.max_by{ |pl| pl[:player_name].length }[:player_name]
+end
+
+def long_name_steals_a_ton?
+  player_with_longest_name == all_players.max_by{ |pl| pl[:steals]}[:player_name]
+end
+  
+  
+>>>>>>> a4904d0f790dc3c019b45600649aca7e2e218abd
 
 def team_colors(team_name)
   find_team_by_name(team_name)[:colors]
