@@ -1,10 +1,9 @@
 require "pry"
 def game_hash
-<<<<<<< HEAD
+
    game_hash ={:home =>
-=======
+
    {:home =>
->>>>>>> a4904d0f790dc3c019b45600649aca7e2e218abd
     { :team_name => "Brooklyn Nets",
       :colors => ["Black", "White"],
       :players => [
